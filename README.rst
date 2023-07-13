@@ -1,26 +1,15 @@
 django-jsonfield
 ================
 
-**Maintenance mode only:** It is not recommended you use this library on new
-projects. Django 3.1 includes a cross-database ``JSONField`` implementation -
-see its `release notes <https://docs.djangoproject.com/en/3.1/releases/3.1/#jsonfield-for-all-supported-database-backends>`__.
-You can use that field on older versions of Django with the
-`django-jsonfield-backport <https://pypi.org/project/django-jsonfield-backport/>`__
-package. See the (long) **History** section below for more information.
+`django-jsonfield <https://github.com/adamchainz/django-jsonfield>`_ for django 3.2 and newer.
 
-**Naming clarification:** This project is released on Pypi under the name
-`django-jsonfield <https://pypi.org/project/django-jsonfield/>`_.
-It should not be confused with the Pypi package
-`jsonfield <https://pypi.org/project/jsonfield/>`_,
-which has also been called django-jsonfield by some.
+Change
+------
 
-----
-
-Cross-database JSON field for Django models.
+* move
 
 History
 -------
-
 
 This project was created in 2010 by Matthew Schinckel. He created it based upon
 code from `David Cramer's
@@ -137,6 +126,11 @@ To run the tests fully, you will need to install tox.
 
 History
 -------
+
+1.5.0 (2023-07-13)
+~~~~~~~~~~~~~~~~~~
+
+* Support for Django 3.2 and newer
 
 1.4.1 (2020-10-28)
 ~~~~~~~~~~~~~~~~~~
