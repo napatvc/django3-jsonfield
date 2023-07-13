@@ -53,7 +53,7 @@ Install it with **pip**:
 
 .. code-block:: sh
 
-    pip install django-jsonfield
+    pip install git+https://github.com/napatvc/django3-jsonfield.git
 
 Then use the field in your models:
 
