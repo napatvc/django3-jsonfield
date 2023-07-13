@@ -3,11 +3,6 @@ django-jsonfield
 
 `django-jsonfield <https://github.com/adamchainz/django-jsonfield>`_ for django 3.2 and newer.
 
-Change
-------
-
-* move
-
 History
 -------
 
