@@ -2,3 +2,5 @@ tox
 tox-bitbucket-status
 coverage
 detox
+pytz
+django

@@ -1,6 +1,6 @@
 import os
 
-from .fields import JSONField
+from .models import JSONField
 
 __all__ = ('JSONField',)
 
