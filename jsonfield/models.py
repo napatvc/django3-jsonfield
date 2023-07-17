@@ -72,6 +72,8 @@ class JSONField(models.Field):
             return 'longtext'
         if connection.vendor == 'oracle':
             return 'long'
+        if connection.vendor == 'microsoft':
+            return 'nvarchar(max)'
         return 'text'
 
     def from_db_value(self, value, expression, connection):
