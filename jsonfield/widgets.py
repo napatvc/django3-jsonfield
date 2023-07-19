@@ -10,7 +10,7 @@ class JSONWidget(forms.Textarea):
             value = ""
         if not isinstance(value, str):
             value = json.dumps(value, ensure_ascii=False, indent=2,
-                               default=default)
+                               default=default, separators=(',', ':'))
         return super(JSONWidget, self).render(name, value, attrs, renderer)
 
 

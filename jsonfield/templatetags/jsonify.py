@@ -13,7 +13,7 @@ def jsonify(value):
     if getattr(value, 'all', False):
         value = list(value)
 
-    json_str = json.dumps(value, cls=TZAwareJSONEncoder)
+    json_str = json.dumps(value, cls=TZAwareJSONEncoder, separators=(',', ':'))
 
     unsafe_chars = {
         '&': '\\u0026',

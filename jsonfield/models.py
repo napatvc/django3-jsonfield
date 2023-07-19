@@ -25,6 +25,7 @@ class JSONField(models.Field):
             kwargs['default'] = kwargs.get('default', dict)
         self.encoder_kwargs = {
             'indent': kwargs.pop('indent', settings.JSONFIELD_INDENT),
+            'separators': (',', ':')
         }
         # This can be an object (probably a class), or a path which can be imported, resulting
         # in an object.
