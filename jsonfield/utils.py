@@ -7,9 +7,6 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 class TZAwareJSONEncoder(DjangoJSONEncoder):
     def default(self, obj):
-        if isinstance(obj, datetime.datetime):
-            dt = obj.astimezone(utc)
-            return dt.strftime("%Y-%m-%dT%H:%M:%S%z")
         return super(TZAwareJSONEncoder, self).default(obj)
 
 

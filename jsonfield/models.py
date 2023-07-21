@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.lookups import Exact, IExact, In, Contains, IContains
 from django.utils.translation import gettext_lazy as _
+from jsonfield.utils import TZAwareJSONEncoder
 
 from . import settings
 from .forms import JSONFormField
@@ -60,7 +61,7 @@ class JSONField(models.Field):
                 default = default()
             if isinstance(default, str):
                 return json.loads(default, **self.decoder_kwargs)
-            return json.loads(json.dumps(default, **self.encoder_kwargs), **self.decoder_kwargs)
+            return json.loads(json.dumps(default, cls=TZAwareJSONEncoder, **self.encoder_kwargs), **self.decoder_kwargs)
         return super(JSONField, self).get_default()
 
     def get_internal_type(self):
@@ -94,7 +95,7 @@ class JSONField(models.Field):
             return None
         if isinstance(value, (bytes, str)):  # backward compatible
             return value
-        return json.dumps(value, **self.encoder_kwargs)
+        return json.dumps(value, cls=TZAwareJSONEncoder, **self.encoder_kwargs)
 
     def select_format(self, compiler, sql, params):
         if compiler.connection.vendor == 'postgresql' and self.decoder_kwargs.get('cls') is not None:
