@@ -49,7 +49,7 @@ class JSONFieldTest(DjangoTestCase):
         field = JSONField("test")
         field.set_attributes_from_name("json")
         self.assertEqual(None, field.get_db_prep_save(None, connection=None))
-        self.assertEqual('{"spam": "eggs"}', field.get_db_prep_save({"spam": "eggs"}, connection=None))
+        self.assertEqual('{"spam":"eggs"}', field.get_db_prep_save({"spam": "eggs"}, connection=None))
 
     def test_formfield(self):
         from jsonfield.forms import JSONFormField
@@ -160,8 +160,11 @@ class JSONFieldTest(DjangoTestCase):
         JSONField('test', indent=2)
 
     def test_string_is_not_json_decoded(self):
+        JSONFieldTestModel.objects.create(json='foo')
+        self.assertEqual('foo', JSONFieldTestModel.objects.last().json)
+
         JSONFieldTestModel.objects.create(json='"foo"')
-        self.assertEqual('"foo"', JSONFieldTestModel.objects.get().json)
+        self.assertEqual('"foo"', JSONFieldTestModel.objects.last().json)
 
     def test_serializing(self):
         JSONFieldTestModel.objects.create(json='["foo"]')

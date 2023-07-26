@@ -20,7 +20,7 @@ class JSONFormFieldTest(DjangoTestCase):
     def test_form_field_widget(self):
         field = JSONFormField(required=False)
         self.assertIn(
-            '{\n  &quot;a&quot;: true\n}',
+            '{\n  &quot;a&quot;:true\n}',
             field.widget.render('json', {"a": True})
         )
 

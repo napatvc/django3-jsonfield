@@ -94,7 +94,7 @@ class JSONField(models.Field):
                 return ""
             return None
         if isinstance(value, (bytes, str)):  # backward compatible
-            return value
+            return json.dumps(value, **self.encoder_kwargs)
         return json.dumps(value, cls=TZAwareJSONEncoder, **self.encoder_kwargs)
 
     def select_format(self, compiler, sql, params):
