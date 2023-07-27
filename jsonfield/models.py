@@ -93,8 +93,6 @@ class JSONField(models.Field):
             if not self.null and self.blank:
                 return ""
             return None
-        if isinstance(value, (bytes, str)):  # backward compatible
-            return json.dumps(value, **self.encoder_kwargs)
         return json.dumps(value, cls=TZAwareJSONEncoder, **self.encoder_kwargs)
 
     def select_format(self, compiler, sql, params):
@@ -132,6 +130,8 @@ class ContainsLookupMixin(object):
             ))
         if isinstance(self.rhs, dict):
             return self.lhs.output_field.get_prep_value(self.rhs)[1:-1]
+        if isinstance(self.rhs, (bytes, str)):
+            return self.rhs
         return self.lhs.output_field.get_prep_value(self.rhs)
 
 
